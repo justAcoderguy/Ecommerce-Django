@@ -1,4 +1,4 @@
-## ROOT CONFTEST FILE ##
+## ROOT/GLOBAL CONFTEST FILE ##
 
 # File that runs different modules or such , before running any texts
 # This file is inspected before running any tests
