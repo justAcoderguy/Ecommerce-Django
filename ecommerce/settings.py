@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     # Local Apps
     'dashboard',
     'inventory',
+    # Third Party Apps
+    'mptt',
 ]
 
 MIDDLEWARE = [

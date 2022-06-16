@@ -9,6 +9,7 @@ fake = Faker()
 
 from inventory import models
 
+# Factory - https://factoryboy.readthedocs.io/en/stable/orms.html
 class CategoryFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = models.Category
