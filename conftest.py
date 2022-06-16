@@ -6,7 +6,7 @@
 
 # Ran before all tests are started in entire project.
 pytest_plugins = [
-    "ecommerce.tests.fixtures",
-    "ecommerce.tests.selenium",
-    "ecommerce.tests.factory",
+    "main.tests.fixtures",
+    "main.tests.selenium",
+    "main.tests.factory",
 ]
