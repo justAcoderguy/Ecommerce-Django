@@ -5,9 +5,9 @@ from django.utils.translation import gettext_lazy as _
 from mptt.models import MPTTModel, TreeForeignKey, TreeManyToManyField
 
 
-class Category():
+class Category(MPTTModel):
     """
-    Inverntory Category Table.
+    Inverntory Category Table ( using MPTT )
     MPTT is used for hierarchical models
     """
     name = models.CharField(

@@ -7,9 +7,9 @@ from inventory import models
 @pytest.mark.parametrize(
     "id, name, slug, is_active",
     [
-        (1, "shoes", "shoes", 1),
-        (14, "shirts", "shirts", 1),
-        (30, "trousers", "trousers", 1),
+        (3, "shoes", "shoes", 1),
+        (17, "golf", "golf", 1),
+        (33, "halloween", "halloween", 1),
     ]
 )
 def test_inventory_category_dbfixture(
@@ -25,7 +25,7 @@ def test_inventory_category_dbfixture(
 @pytest.mark.parametrize(
     "name, slug, is_active",
     [
-        ("shoes", "shoes", 1),
+        ("jumper", "jumper", 1),
         ("shirts", "shirts", 1),
         ("trousers", "trousers", 1),
     ]
