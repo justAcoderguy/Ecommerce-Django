@@ -1,6 +1,11 @@
 import pytest
 from inventory import models
 
+##################################
+####### CATEGORY MODEL ###########
+##################################
+
+
 #### Method 1 - Using Fixtures ####
 
 @pytest.mark.dbfixture

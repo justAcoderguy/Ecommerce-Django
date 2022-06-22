@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     # Local Apps
     'dashboard',
     'inventory',
+    'demo',
     # Third Party Apps
     'mptt',
 ]
