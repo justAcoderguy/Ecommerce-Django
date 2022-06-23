@@ -151,7 +151,11 @@ def test_inventory_db_product_insert_data(db, product_factory, django_db_fixture
         'django_db_fixture_setup' is added here in the parameters just for understanding , 
         but it is not needed because the fixture is scoped as 'session' and running any 
         previous dbfixture marked test would be sufficient as the data would be stored in db
-        for current testing session.
+        for current testing session. 
+        
+        NOTE: if only dbfactory mark tests were run, then the django_db_fixture_Setup
+        would be required since no other fixture tests are being run to create the session wide 
+        database data.
 
         This test tests the creation of a new product object using the product factory.  
     """
