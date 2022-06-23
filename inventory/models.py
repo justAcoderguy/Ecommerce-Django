@@ -93,6 +93,7 @@ class Product(models.Model):
         verbose_name=_("product description"),
         help_text=_("format: required"),
     )
+    # Question : Is this 'TreeManyToManyField' implemented inside as reqd???
     category = TreeManyToManyField(Category)
     is_active = models.BooleanField(
         unique=False,

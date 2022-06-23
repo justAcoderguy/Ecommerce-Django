@@ -36,7 +36,14 @@ class ProductFactory(factory.django.DjangoModelFactory):
     created_at = "2022-06-23 13:40:13.279092",
     updated_at = "2022-06-23 13:40:13.279092"
 
-     # https://factoryboy.readthedocs.io/en/stable/reference.html?highlight=PostGeneration#factory.post_generation
+    # https://factoryboy.readthedocs.io/en/stable/reference.html?highlight=PostGeneration#factory.post_generation
+    """
+        Many to Many relation between category and product implemented here.
+        After product object is created, we add the category ids post object generation
+        by using the 'category' parameter in the .create() function.
+        Thats basically what happens in django behind the scenes if we inserted into the 
+        database
+    """ 
     @factory.post_generation
     # Name of function should be name of parameter passed in create()
     def category(self, create, extracted, **kwargs):
