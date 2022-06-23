@@ -71,7 +71,6 @@ def test_inventory_db_category_insert_data_using_factory_only(
     """
     category = category_factory.create()
     category_in_db = models.Category.objects.get(id = category.id)
-    print(category.name)
     assert category.name == category_in_db.name
     assert category.slug == category_in_db.slug
     assert category.is_active == category_in_db.is_active
@@ -85,7 +84,7 @@ def test_inventory_db_category_insert_data_using_factory_only(
 
 @pytest.mark.dbfixture
 @pytest.mark.parametrize(
-    "id, web_id, slug, name, description, is_active, created_at, updated_at",
+    "id, web_id, name, slug, description, is_active, created_at, updated_at",
     [
         (
             1,
@@ -159,8 +158,8 @@ def test_inventory_db_product_insert_data(db, product_factory, django_db_fixture
 
         This test tests the creation of a new product object using the product factory.  
     """
-
+    # We are passing the categories here which then uses post_generation decorator
+    # in the product factory
     new_product = product_factory.create(category=(1, 2, 3, 4, 5))
-    result_product_category = new_product.category.all().count()
-    assert "web_id_" in new_product.web_id
-    assert result_product_category == 5
+    result_product_category_number = new_product.category.all().count()
+    assert result_product_category_number == 5
