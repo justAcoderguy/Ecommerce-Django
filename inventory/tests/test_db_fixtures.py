@@ -393,7 +393,7 @@ def test_inventory_db_media_insert_data(db, media_factory):
 )
 def test_inventory_db_stock_dataset(
     db,
-    db_fixture_setup,
+    django_db_fixture_setup,
     id,
     product_inventory,
     last_checked,
