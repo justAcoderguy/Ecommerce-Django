@@ -213,7 +213,7 @@ def test_inventory_db_product_insert_data(db, product_factory, django_db_fixture
         ),
     ],
 )
-def test_inventory_db_product_inventory_dataset(
+def test_inventory_db_product_inventory_dbfixture(
     
     db,
     django_db_fixture_setup,
@@ -276,3 +276,30 @@ def test_inventory_product_inventory_insert_data(
     assert new_product_inventory.store_price == 92.00
     assert new_product_inventory.sale_price == 46.00
     assert new_product_inventory.weight == 987
+
+##################################
+###### PRODUCT TYPE MODEL ########
+##################################
+
+# Method 2 - Using Factory
+
+@pytest.mark.dbfactory
+def test_inventory_product_type_insert_data(
+    db, product_type_factory
+):
+    new_prod_type = product_type_factory.create(name="new_type")
+    assert new_prod_type.name == "new_type"
+
+
+##################################
+######### BRAND MODEL ############
+##################################
+
+# # Method 2 - Using Factory
+
+@pytest.mark.dbfactory
+def test_inventory_brand_insert_data(
+    db, brand_factory
+):
+    new_brand = brand_factory.create(name="new_brand")
+    assert new_brand.name == "new_brand"
