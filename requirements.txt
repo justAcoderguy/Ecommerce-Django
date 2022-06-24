@@ -12,6 +12,7 @@ idna==3.3
 inflection==0.5.1
 iniconfig==1.1.1
 packaging==21.3
+Pillow==9.1.1
 pluggy==1.0.0
 py==1.11.0
 pyparsing==3.0.9
