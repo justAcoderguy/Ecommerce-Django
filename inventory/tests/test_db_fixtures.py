@@ -184,7 +184,7 @@ def test_inventory_db_product_insert_data(db, product_factory, django_db_fixture
         (
             1,
             "7633969397",
-            "934093051374",
+            "100000000001",
             1,
             1,
             1,
@@ -199,7 +199,7 @@ def test_inventory_db_product_insert_data(db, product_factory, django_db_fixture
         (
             8616,
             "3880741573",
-            "844935525855",
+            "100000008616",
             1,
             8616,
             1253,
@@ -216,7 +216,7 @@ def test_inventory_db_product_insert_data(db, product_factory, django_db_fixture
 def test_inventory_db_product_inventory_dataset(
     
     db,
-    db_fixture_setup,
+    django_db_fixture_setup,
     id,
     sku,
     upc,
