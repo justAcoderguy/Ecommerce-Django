@@ -290,6 +290,14 @@ def test_inventory_product_type_insert_data(
     new_prod_type = product_type_factory.create(name="new_type")
     assert new_prod_type.name == "new_type"
 
+@pytest.mark.dbfactory
+def test_inventory_product_type_uniqueness_integrity(db, product_type_factory):
+    new_prod_type = product_type_factory.create(name="new_type")
+
+    # https://docs.pytest.org/en/6.2.x/assert.html#assertions-about-expected-exceptions
+    with pytest.raises(IntegrityError):
+        product_type_factory.create(name="new_type")
+
 
 ##################################
 ######### BRAND MODEL ############
@@ -303,3 +311,11 @@ def test_inventory_brand_insert_data(
 ):
     new_brand = brand_factory.create(name="new_brand")
     assert new_brand.name == "new_brand"
+
+@pytest.mark.dbfactory
+def test_inventory_brand_uniqueness_integrity(db, brand_factory):
+    new_brand = brand_factory.create(name="new_brand")
+
+    # https://docs.pytest.org/en/6.2.x/assert.html#assertions-about-expected-exceptions
+    with pytest.raises(IntegrityError):
+        brand_factory.create(name="new_brand")
