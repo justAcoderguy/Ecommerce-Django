@@ -1,5 +1,3 @@
-from statistics import mode
-from tabnanny import verbose
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from mptt.models import MPTTModel, TreeForeignKey, TreeManyToManyField
@@ -11,16 +9,16 @@ class Category(MPTTModel):
     MPTT is used for hierarchical models
     """
     name = models.CharField(
-        max_length=100, 
-        null=False, 
-        unique=True, 
-        blank=False, 
+        max_length=100,
+        null=False,
+        unique=True,
+        blank=False,
         verbose_name=_("category name"),
         help_text=_("format: required, max-100"),
-        )
+    )
     slug = models.SlugField(
-        max_length=150, 
-        null=False, 
+        max_length=150,
+        null=False,
         unique=True,
         blank=False,
         verbose_name=_("url safe category name"),
@@ -59,7 +57,7 @@ class Product(models.Model):
     """
         Product details table
     """
-    
+
     web_id = models.CharField(
         max_length=50,
         unique=True,
@@ -110,8 +108,8 @@ class Product(models.Model):
         help_text=_("format: Y-m-d H:M:S"),
     )
     updated_at = models.DateTimeField(
-        # Any field with the auto_now attribute set will also 
-        # inherit editable=False and therefore will not show up in 
+        # Any field with the auto_now attribute set will also
+        # inherit editable=False and therefore will not show up in
         # the admin panel.
         auto_now=True,
         verbose_name=_("date product last updated"),
@@ -120,6 +118,7 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class Brand(models.Model):
     """
@@ -134,6 +133,7 @@ class Brand(models.Model):
         verbose_name=_("brand name"),
         help_text=_("format: required, unique, max-255"),
     )
+
 
 class ProductType(models.Model):
     """
@@ -151,7 +151,6 @@ class ProductType(models.Model):
 
     def __str__(self):
         return self.name
-
 
 
 class ProductInventory(models.Model):
@@ -263,7 +262,7 @@ class ProductInventory(models.Model):
     def __str__(self):
         return self.product.name
 
-    
+
 class Media(models.Model):
     """
     The media table.
@@ -311,6 +310,7 @@ class Media(models.Model):
     class Meta:
         verbose_name = _("product image")
         verbose_name_plural = _("product images")
+
 
 class Stock(models.Model):
     product_inventory = models.OneToOneField(

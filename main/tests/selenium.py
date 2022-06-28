@@ -5,6 +5,7 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
+
 @pytest.fixture(scope="module")
 def chrome_browser_instance():
     """
@@ -12,6 +13,6 @@ def chrome_browser_instance():
     """
     options = Options()
     options.headless = False
-    driver = webdriver.Chrome(f"{str(BASE_DIR)}"+"/chromedriver", options=options)
+    driver = webdriver.Chrome(f"{str(BASE_DIR)}" + "/chromedriver", options=options)
     yield driver
     driver.quit()

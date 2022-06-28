@@ -36,9 +36,10 @@ def test_inventory_category_dbfixture(
     category = models.Category.objects.get(id=id)
     assert category.name == name
     assert category.slug == slug
-    assert category.is_active == is_active 
+    assert category.is_active == is_active
 
 #### Method 2 - Using Factory(ies) ####
+
 
 @pytest.mark.dbfactory
 @pytest.mark.parametrize(
@@ -59,7 +60,8 @@ def test_inventory_db_category_insert_data(
     category = category_factory.create(name=name, slug=slug, is_active=is_active)
     assert category.name == name
     assert category.slug == slug
-    assert category.is_active == is_active 
+    assert category.is_active == is_active
+
 
 @pytest.mark.dbfactory
 def test_inventory_db_category_insert_data_using_factory_only(
@@ -70,7 +72,7 @@ def test_inventory_db_category_insert_data_using_factory_only(
         using default parameters.
     """
     category = category_factory.create()
-    category_in_db = models.Category.objects.get(id = category.id)
+    category_in_db = models.Category.objects.get(id=category.id)
     assert category.name == category_in_db.name
     assert category.slug == category_in_db.slug
     assert category.is_active == category_in_db.is_active
@@ -91,7 +93,7 @@ def test_inventory_db_category_insert_data_using_factory_only(
             "45425810",
             "widstar running sneakers",
             "widstar-running-sneakers",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin porta, eros vel sollicitudin lacinia, quam metus gravida elit, a elementum nisl neque sit amet orci. Nulla id lorem ac nunc cursus consequat vitae ut orci. In a velit eu justo eleifend tincidunt vel eu turpis. Praesent eu orci egestas, lobortis magna egestas, tincidunt augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aenean vitae lectus eget tortor laoreet efficitur vel et leo. Maecenas volutpat eget ante id tempor. Etiam posuere ex urna, at aliquet risus tempor eu. Aenean a odio odio. Nunc consectetur lorem ante, interdum ultrices elit consectetur sit amet. Vestibulum rutrum interdum nulla. Cras vel mi a enim eleifend blandit. Curabitur ex dui, rutrum et odio sit amet, auctor euismod massa.",
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin porta, eros vel sollicitudin lacinia, quam metus gravida elit, a elementum nisl neque sit amet orci. Nulla id lorem ac nunc cursus consequat vitae ut orci. In a velit eu justo eleifend tincidunt vel eu turpis. Praesent eu orci egestas, lobortis magna egestas, tincidunt augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aenean vitae lectus eget tortor laoreet efficitur vel et leo. Maecenas volutpat eget ante id tempor. Etiam posuere ex urna, at aliquet risus tempor eu. Aenean a odio odio. Nunc consectetur lorem ante, interdum ultrices elit consectetur sit amet. Vestibulum rutrum interdum nulla. Cras vel mi a enim eleifend blandit. Curabitur ex dui, rutrum et odio sit amet, auctor euismod massa.",  # noqa: E501
             1,
             "2021-09-04 22:14:18",
             "2021-09-04 22:14:18",
@@ -101,7 +103,7 @@ def test_inventory_db_category_insert_data_using_factory_only(
             "45434425",
             "impact puse dance shoe",
             "impact-puse-dance-shoe",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin porta, eros vel sollicitudin lacinia, quam metus gravida elit, a elementum nisl neque sit amet orci. Nulla id lorem ac nunc cursus consequat vitae ut orci. In a velit eu justo eleifend tincidunt vel eu turpis. Praesent eu orci egestas, lobortis magna egestas, tincidunt augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aenean vitae lectus eget tortor laoreet efficitur vel et leo. Maecenas volutpat eget ante id tempor. Etiam posuere ex urna, at aliquet risus tempor eu. Aenean a odio odio. Nunc consectetur lorem ante, interdum ultrices elit consectetur sit amet. Vestibulum rutrum interdum nulla. Cras vel mi a enim eleifend blandit. Curabitur ex dui, rutrum et odio sit amet, auctor euismod massa.",
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin porta, eros vel sollicitudin lacinia, quam metus gravida elit, a elementum nisl neque sit amet orci. Nulla id lorem ac nunc cursus consequat vitae ut orci. In a velit eu justo eleifend tincidunt vel eu turpis. Praesent eu orci egestas, lobortis magna egestas, tincidunt augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aenean vitae lectus eget tortor laoreet efficitur vel et leo. Maecenas volutpat eget ante id tempor. Etiam posuere ex urna, at aliquet risus tempor eu. Aenean a odio odio. Nunc consectetur lorem ante, interdum ultrices elit consectetur sit amet. Vestibulum rutrum interdum nulla. Cras vel mi a enim eleifend blandit. Curabitur ex dui, rutrum et odio sit amet, auctor euismod massa.",  # noqa: E501
             1,
             "2021-09-04 22:14:18",
             "2021-09-04 22:14:18",
@@ -135,10 +137,11 @@ def test_inventory_product_uniqueness_integrity(db, product_factory):
         Test to verify that we can't create two products with the same web id.
         ie. Web-id assigned to a product must be unique
     """
-    product = product_factory.create(web_id=12345678)
+    product = product_factory.create(web_id=12345678)  # noqa
     # https://docs.pytest.org/en/6.2.x/assert.html#assertions-about-expected-exceptions
     with pytest.raises(IntegrityError):
         product_factory.create(web_id=12345678)
+
 
 @pytest.mark.dbfixture
 @pytest.mark.dbfactory
@@ -146,17 +149,17 @@ def test_inventory_db_product_insert_data(db, product_factory, django_db_fixture
     """
         This uses both fixture and factory mark because this test is using category data
         from category fixture and a product object is created from product factory.
-        
-        'django_db_fixture_setup' is added here in the parameters just for understanding , 
-        but it is not needed because the fixture is scoped as 'session' and running any 
+
+        'django_db_fixture_setup' is added here in the parameters just for understanding ,
+        but it is not needed because the fixture is scoped as 'session' and running any
         previous dbfixture marked test would be sufficient as the data would be stored in db
-        for current testing session. 
-        
+        for current testing session.
+
         NOTE: if only dbfactory mark tests were run, then the django_db_fixture_Setup
-        would be required since no other fixture tests are being run to create the session wide 
+        would be required since no other fixture tests are being run to create the session wide
         database data.
 
-        This test tests the creation of a new product object using the product factory.  
+        This test tests the creation of a new product object using the product factory.
     """
     # We are passing the categories here which then uses post_generation decorator
     # in the product factory
@@ -172,14 +175,17 @@ def test_inventory_db_product_insert_data(db, product_factory, django_db_fixture
 ######## Using Fixtures ##########
 
 """
-    Product Inventory is used to distinguish between the variants of a product. 
-    Eg. A XYZ brand of shoe may have 3 colours. All 3 are different fields in the 
-    product inventory table but they are essentially the same XYZ brand of shoe in 
-    the product table. 
+    Product Inventory is used to distinguish between the variants of a product.
+    Eg. A XYZ brand of shoe may have 3 colours. All 3 are different fields in the
+    product inventory table but they are essentially the same XYZ brand of shoe in
+    the product table.
 """
+
+
 @pytest.mark.dbfixture
 @pytest.mark.parametrize(
-    "id, sku, upc, product_type, product, brand, is_active, retail_price, store_price, sale_price, weight, created_at, updated_at",
+    "id, sku, upc, product_type, product, brand, is_active, retail_price, store_price, sale_price,\
+    weight, created_at, updated_at",
     [
         (
             1,
@@ -214,7 +220,7 @@ def test_inventory_db_product_insert_data(db, product_factory, django_db_fixture
     ],
 )
 def test_inventory_db_product_inventory_dbfixture(
-    
+
     db,
     django_db_fixture_setup,
     id,
@@ -257,7 +263,7 @@ def test_inventory_product_inventory_insert_data(
 ):
     """
         This test tests the creation of a new product inventory object using the product
-        inventory factory.  
+        inventory factory.
     """
     new_product_inventory = product_inventory_factory.create(
         sku="123456789",
@@ -283,6 +289,7 @@ def test_inventory_product_inventory_insert_data(
 
 # Method 2 - Using Factory
 
+
 @pytest.mark.dbfactory
 def test_inventory_product_type_insert_data(
     db, product_type_factory
@@ -290,9 +297,10 @@ def test_inventory_product_type_insert_data(
     new_prod_type = product_type_factory.create(name="new_type")
     assert new_prod_type.name == "new_type"
 
+
 @pytest.mark.dbfactory
 def test_inventory_product_type_uniqueness_integrity(db, product_type_factory):
-    new_prod_type = product_type_factory.create(name="new_type")
+    new_prod_type = product_type_factory.create(name="new_type")  # noqa
 
     # https://docs.pytest.org/en/6.2.x/assert.html#assertions-about-expected-exceptions
     with pytest.raises(IntegrityError):
@@ -305,6 +313,7 @@ def test_inventory_product_type_uniqueness_integrity(db, product_type_factory):
 
 # # Method 2 - Using Factory
 
+
 @pytest.mark.dbfactory
 def test_inventory_brand_insert_data(
     db, brand_factory
@@ -312,9 +321,10 @@ def test_inventory_brand_insert_data(
     new_brand = brand_factory.create(name="new_brand")
     assert new_brand.name == "new_brand"
 
+
 @pytest.mark.dbfactory
 def test_inventory_brand_uniqueness_integrity(db, brand_factory):
-    new_brand = brand_factory.create(name="new_brand")
+    new_brand = brand_factory.create(name="new_brand")  # noqa
 
     # https://docs.pytest.org/en/6.2.x/assert.html#assertions-about-expected-exceptions
     with pytest.raises(IntegrityError):
