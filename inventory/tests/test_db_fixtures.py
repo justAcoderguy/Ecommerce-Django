@@ -424,5 +424,6 @@ def test_inventory_db_stock_insert_data(db, stock_factory):
     assert new_stock.units == 2
     assert new_stock.units_sold == 100
     assert new_stock.units_sold == 100
+    assert new_stock.units_sold == 100
 
 #test if CI is active .
