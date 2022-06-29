@@ -390,7 +390,7 @@ def test_inventory_db_media_insert_data(db, media_factory):
 
 
 ##################################
-######## BRAND MODEL #############
+######## STOCK MODEL #############
 ##################################
 
 @pytest.mark.dbfixture
