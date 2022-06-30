@@ -116,6 +116,31 @@ class ProductAttributeValueFactory(factory.django.DjangoModelFactory):
     attribute_value = fake.lexify(text="attribute_value_??????")
 
 
+class ProductAttributeValuesFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = models.ProductAttributeValues
+
+    attributevalues = factory.SubFactory(ProductAttributeValueFactory)
+    productinventory = factory.SubFactory(ProductInventoryFactory)
+
+
+class ProductWithAttributeValuesFactory(ProductInventoryFactory):
+    """
+        A RelatedFactory behaves mostly like a SubFactory, with the
+        main difference that the related Factory will be generated after
+        the base Factory.
+        https://factoryboy.readthedocs.io/en/stable/reference.html#factory.RelatedFactory
+    """
+    attributevalues1 = factory.RelatedFactory(
+        ProductAttributeValuesFactory,
+        factory_related_name="productinventory",
+    )
+    attributevalues2 = factory.RelatedFactory(
+        ProductAttributeValuesFactory,
+        factory_related_name="productinventory",
+    )
+
+
 register(CategoryFactory)
 register(ProductFactory)
 register(ProductTypeFactory)
@@ -125,3 +150,5 @@ register(MediaFactory)
 register(StockFactory)
 register(ProductAttributeFactory)
 register(ProductAttributeValueFactory)
+register(ProductAttributeValuesFactory)
+register(ProductWithAttributeValuesFactory)
