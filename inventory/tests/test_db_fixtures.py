@@ -458,3 +458,22 @@ def test_inventory_db_product_attrubite_uniqueness_integrity(
     product_attribute_factory.create(name="not_unique")
     with pytest.raises(IntegrityError):
         product_attribute_factory.create(name="not_unique")
+
+
+#################################
+# PRODUCT ATTRIBUTE VALUE MODEL #
+#################################
+
+@pytest.mark.dbfixture
+@pytest.mark.parametrize(
+    "id, product_attribute, attribute_value",
+    [
+        (1, 1, 10),  # PK: 1, Men shoe size is the attribute (FK 1), Attr Value: 10
+    ],
+)
+def test_inventory_db_product_attribute_value_dataset(
+    db, django_db_fixture_setup, id, product_attribute, attribute_value
+):
+    result = models.ProductAttributeValue.objects.get(id=1)
+    assert result.product_attribute.id == 1
+    assert result.attribute_value == "10"
