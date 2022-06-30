@@ -477,3 +477,18 @@ def test_inventory_db_product_attribute_value_dataset(
     result = models.ProductAttributeValue.objects.get(id=1)
     assert result.product_attribute.id == 1
     assert result.attribute_value == "10"
+
+
+def test_inventory_db_product_attribute_value_data(
+    db, product_attribute_value_factory
+):
+    """
+        Here we are passing the attribute value as well as creating a
+        brand new product attribute with the name "new_value" using
+        sub factory.
+    """
+    new_attribute_value = product_attribute_value_factory.create(
+        attribute_value="new_value", product_attribute__name="new_value"
+    )
+    assert new_attribute_value.attribute_value == "new_value"
+    assert new_attribute_value.product_attribute.name == "new_value"
