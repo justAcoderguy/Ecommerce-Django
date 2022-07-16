@@ -3,7 +3,10 @@ attrs==21.4.0
 backports.zoneinfo==0.2.1
 certifi==2022.5.18.1
 charset-normalizer==2.0.12
-Django==4.0.5
+# Use Django 4 for local
+# Django==4.0.5
+# Django 3 for github CI
+Django==3.2.14
 django-js-asset==2.0.0
 django-mptt==0.13.4
 factory-boy==3.2.1
