@@ -23,7 +23,7 @@ jobs:
         pip install -r requirements.txt
     - name: Running Docker
       run: |
-        docker-compose up
+        docker-compose up -d
     - name: Lint with Flake8
       run: |
         flake8 --ignore=E266
