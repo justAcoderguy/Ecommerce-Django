@@ -1,4 +1,3 @@
-import re
 from django.shortcuts import render
 from inventory import models
 
@@ -33,7 +32,7 @@ def product_detail(request, slug):
             filter_args.append(value)
 
     print(filter_args)
-    from django.db.models import Count
+    # from django.db.models import Count
 
     print(models.ProductInventory.objects.filter(product__slug=slug))
 
