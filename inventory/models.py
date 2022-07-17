@@ -237,10 +237,21 @@ class ProductInventory(models.Model):
         related_name="product_attribute_values",
         through="ProductAttributeValues",
     )
-    is_active = models.BooleanField(
+    is_active = models.BooleanField( 
         default=True,
         verbose_name=_("product visibility"),
         help_text=_("format: true=product visible"),
+    )
+    """
+        A Product may have many different tuples in Product Inventory table due to 
+        different SKUs, this field will decide which product is shown as default.
+        Eg. X Brand Shoe may have 3 colours, but the red shoe will be shown as default
+        whenever the X Brand Shoe is selected.
+    """
+    is_default = models.BooleanField(
+        default=False,
+        verbose_name=_("default product"),
+        help_text=_("format: true=sub product is now visible"),
     )
     is_default = models.BooleanField(
         default=False,

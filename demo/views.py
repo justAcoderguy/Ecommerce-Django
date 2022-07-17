@@ -1,3 +1,4 @@
+import re
 from django.shortcuts import render
 from inventory import models
 
@@ -25,7 +26,22 @@ def product_by_category(request, category):
 
 def product_detail(request, slug):
 
-    data = models.ProductInventory.objects.filter(product__slug=slug).values(
+    filter_args = []
+
+    if request.GET:
+        for value in request.GET.values():
+            filter_args.append(value)
+
+    print(filter_args)
+    from django.db.models import Count
+
+    print(models.ProductInventory.objects.filter(product__slug=slug))
+
+    # Returns the Default Product for all ProductInventory Tuples
+    # See ProductInventory Model for more detail
+    data = models.ProductInventory.objects.filter(product__slug=slug).filter(
+        attribute_values__attribute_value__in=filter_args
+    ).values(
         "id", "product__name", "sku", "store_price", "product_inventory__units"
     )
 
