@@ -59,7 +59,7 @@ class Product(models.Model):
     """
 
     web_id = models.CharField(
-        max_length=50,
+        max_length=100,
         unique=True,
         null=False,
         blank=False,
